@@ -1,0 +1,12 @@
+:root{
+--border-hair:1px; /* @kind other */
+--border-1:2px; /* @kind other */
+--border-2:4px; /* @kind other */
+--rule:var(--border-hair) solid var(--border-hairline); /* @kind other */
+--frame:var(--border-2) solid var(--border); /* @kind other */
+--frame-thin:var(--border-1) solid var(--border); /* @kind other */
+/* the brand is square: radius is 0 except where a control must read as a control */
+--radius-0:0;
+--radius-1:2px;
+--radius-full:999px;
+}

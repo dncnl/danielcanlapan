@@ -1,0 +1,8 @@
+/* dncnl.dev webfonts — served from the Fontsource CDN (jsDelivr).
+   Libre Caslon Text + League Spartan are also on Google Fonts; Lilex is not.
+   Swap the src: urls for local binaries if self-hosting. */
+@font-face{font-family:'Libre Caslon Text';font-style:normal;font-weight:400;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/libre-caslon-text@latest/latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Libre Caslon Text';font-style:italic;font-weight:400;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/libre-caslon-text@latest/latin-400-italic.woff2) format('woff2')}
+@font-face{font-family:'Libre Caslon Text';font-style:normal;font-weight:700;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/libre-caslon-text@latest/latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'League Spartan';font-style:normal;font-weight:100 900;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/league-spartan:vf@latest/latin-wght-normal.woff2) format('woff2-variations')}
+@font-face{font-family:'Lilex';font-style:normal;font-weight:100 700;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/lilex:vf@latest/latin-wght-normal.woff2) format('woff2-variations')}

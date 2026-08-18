@@ -1,0 +1,10 @@
+:root{
+/* hard offset shadow — a printed-block feel, never a soft drop shadow */
+--shadow-hard:4px 4px 0 var(--border);
+--shadow-hard-sm:2px 2px 0 var(--border);
+--shadow-hard-lg:8px 8px 0 var(--border);
+--shadow-inset-hair:inset 0 0 0 var(--border-hair) var(--border-hairline);
+/* the one soft element in the system: the orb */
+--orb-blur:blur(48px); /* @kind other */
+--orb-size:clamp(320px,52vw,860px); /* @kind spacing */
+}

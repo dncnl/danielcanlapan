@@ -1,0 +1,81 @@
+:root{
+/* base — sampled from the brand sheet */
+--cream:#f6f3e8;
+--paper:#fcfaf6;
+--ink:#010101;
+/* ink tints (mixed toward cream, so neutrals stay warm) */
+--ink-80:#343330;
+--ink-60:#67655d;
+--ink-40:#9b988c;
+--ink-25:#c2bfb3;
+--ink-12:#dedbcf;
+--ink-06:#eceada;
+/* dark theme — a warm near-black stack, not inverted cream.
+   Hue held at ~60deg so the darks stay in the same family as the paper. */
+--night:#0e0d0b;
+--night-2:#171613;
+--night-3:#201f1b;
+--night-4:#2b2a25;
+--night-line:#3c3a34;
+--night-line-2:#5a574f;
+--bone:#eae6d8;
+--bone-2:#9c988c;
+--bone-3:#6e6b62;
+/* semantic accents — INTENTIONAL ADDITION, not on the brand sheet.
+   Desaturated editorial hues that sit quietly on cream. */
+--moss:#3d5c3a;
+--rust:#8f3a20;
+--ochre:#b5872b;
+--slate:#33505e;
+
+/* ——— semantic aliases (light is the default theme) ——— */
+--bg:var(--cream);
+--surface:var(--paper);
+--surface-sunken:var(--ink-06);
+--surface-inverse:var(--ink);
+--surface-raised:var(--paper);
+--text:var(--ink);
+--text-muted:var(--ink-60);
+--text-subtle:var(--ink-40);
+--text-inverse:var(--cream);
+--border:var(--ink);
+--border-soft:var(--ink-25);
+--border-hairline:var(--ink-12);
+--focus-ring:var(--ink);
+--orb:var(--ink);
+--success:var(--moss);
+--danger:var(--rust);
+--warning:var(--ochre);
+--info:var(--slate);
+/* data viz — monochrome ink ramp first, accents only when categories demand it */
+--data-1:var(--ink);
+--data-2:var(--ink-60);
+--data-3:var(--ink-40);
+--data-4:var(--ink-25);
+--data-accent:var(--rust);
+}
+[data-theme="dark"]{
+--bg:var(--night);
+--surface:var(--night-2);
+--surface-sunken:var(--night-3);
+--surface-raised:var(--night-4);
+--surface-inverse:var(--bone);
+--text:var(--bone);
+--text-muted:var(--bone-2);
+--text-subtle:var(--bone-3);
+--text-inverse:var(--night);
+--border:var(--night-line-2);
+--border-soft:var(--night-line);
+--border-hairline:#292824;
+--focus-ring:var(--bone);
+--orb:#2f2d27;
+--success:#8fb587;
+--danger:#e0a184;
+--warning:#dcb96b;
+--info:#93b3c4;
+--data-1:var(--bone);
+--data-2:var(--bone-2);
+--data-3:var(--bone-3);
+--data-4:var(--night-line);
+--data-accent:#e0a184;
+}

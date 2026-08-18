@@ -1,0 +1,17 @@
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:var(--fs-base);line-height:var(--lh-body);letter-spacing:var(--tracking-none);transition:var(--transition-theme);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-family:var(--font-title);font-weight:var(--fw-bold);letter-spacing:var(--tracking-tight);line-height:var(--lh-tight)}
+h5,h6{margin:0;font-family:var(--font-title);font-weight:var(--fw-bold);letter-spacing:var(--tracking-slight);line-height:var(--lh-snug)}
+/* tight tracking is a display treatment only — body, UI and small text stay at 0 */
+p,li,td,th,label,input,textarea,select,button,figcaption,small{letter-spacing:var(--tracking-none)}
+h1{font-size:var(--fs-4xl)}h2{font-size:var(--fs-3xl)}h3{font-size:var(--fs-xl)}h4{font-size:var(--fs-lg)}
+p{margin:0}
+a{color:var(--text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:var(--transition-ui)}
+a:hover{color:var(--text-muted);text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:var(--border-1) solid var(--focus-ring);outline-offset:2px}
+::selection{background:var(--ink);color:var(--cream)}
+[data-theme="dark"] ::selection{background:var(--cream);color:var(--ink)}
+hr{border:0;border-top:var(--rule);margin:var(--space-6) 0}
+code,kbd,pre{font-family:var(--font-mono)}
+img,svg{display:block;max-width:100%}
