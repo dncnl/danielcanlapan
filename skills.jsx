@@ -5,9 +5,9 @@ function Skills() {
     <section id="skills" style={{ padding: 'var(--section-y) 0', background: 'var(--surface)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
       <div style={{ padding: '0 var(--page-pad-x)' }}>
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-          <Reveal><Eyebrow index="04" rule>what I do</Eyebrow></Reveal>
+          <Reveal><Eyebrow index="03" rule>what I do</Eyebrow></Reveal>
           <Reveal delay={60}>
-            <h2 style={{ fontSize: 'var(--fs-3xl)', maxWidth: '26ch', margin: 'var(--space-5) 0 0' }}>Four competencies, one person to brief.</h2>
+            <h2 style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Skills</h2>
           </Reveal>
           <div style={{
             display: 'grid',

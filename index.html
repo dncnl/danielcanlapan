@@ -1,5 +1,7 @@
 <!-- @dsCard group="dncnl.dev" viewport="1440x860" name="Portfolio — home" subtitle="Hero, skill marquee, projects, competencies, about, contact. Light/dark toggle in the nav." -->
-<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><title>dncnl.dev — Daniel Martin Canlapan</title>
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dncnl.dev — Daniel Martin Canlapan</title>
 <link rel="stylesheet" href="styles.css">
 <style>html{scroll-behavior:smooth}body{min-height:100vh}</style>
 </head><body><div id="root"></div>
@@ -10,14 +12,14 @@
 <script src="data.js"></script>
 <script type="text/babel" src="nav.jsx"></script>
 <script type="text/babel" src="hero.jsx"></script>
-<script type="text/babel" src="intro.jsx"></script>
 <script type="text/babel" src="work.jsx"></script>
 <script type="text/babel" src="skills.jsx"></script>
+<script type="text/babel" src="certifications.jsx"></script>
 <script type="text/babel" src="about.jsx"></script>
 <script type="text/babel" src="contact.jsx"></script>
 <script type="text/babel" src="footer.jsx"></script>
 <script type="text/babel">
-const SECTIONS = ['top', 'work', 'skills', 'about', 'contact'];
+const SECTIONS = ['top', 'work', 'skills', 'certifications', 'about', 'contact'];
 
 function Site() {
   const [theme, setTheme] = React.useState(() => localStorage.getItem('dncnl-theme') || 'dark');
@@ -48,9 +50,9 @@ function Site() {
     <React.Fragment>
       <Nav theme={theme} setTheme={setTheme} active={active} onNav={onNav} />
       <Hero onNav={onNav} />
-      <Intro />
       <Work />
       <Skills />
+      <Certifications />
       <About />
       <Contact />
       <Footer />

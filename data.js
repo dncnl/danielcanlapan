@@ -1,7 +1,7 @@
-// Content sourced from Daniel Martin G. Canlapan's resume (assets/resume.docx).
+// Content sourced from Daniel Martin G. Canlapan's CV (assets/Daniel_Canlapan_Resume.pdf).
 const SKILLS_A = [
   { name: 'Python', slug: 'python' }, { name: 'Java', slug: 'openjdk' },
-  { name: 'JavaScript', slug: 'javascript' }, { name: 'C#', slug: 'csharp' },
+  { name: 'JavaScript', slug: 'javascript' }, { name: 'C#' },
   { name: 'C++', slug: 'cplusplus' }, { name: 'Dart', slug: 'dart' },
   { name: 'PostgreSQL', slug: 'postgresql' }, { name: 'Supabase', slug: 'supabase' },
   { name: 'Node.js', slug: 'nodedotjs' }, { name: 'Express', slug: 'express' },
@@ -17,7 +17,7 @@ const COMPETENCIES = [
     body: 'Responsive web applications and secure RESTful APIs with Node.js and Express, vanilla JavaScript on the front, PostgreSQL and Supabase behind.',
     tags: ['node.js', 'express', 'javascript', 'postgresql', 'supabase'] },
   { key: 'machine learning & data analysis', icon: 'line-chart',
-    body: 'Developing, training and evaluating predictive models — preprocessing, feature engineering and visualisation in Python.',
+    body: 'Developing, training and evaluating predictive models: preprocessing, feature engineering and visualisation in Python.',
     tags: ['python', 'scikit-learn', 'pandas', 'numpy', 'seaborn'] },
   { key: 'software & UI development', icon: 'layout',
     body: 'Standalone desktop applications and graphical interfaces with Tkinter and CustomTkinter; UI design, prototyping and mockups in Figma.',
@@ -28,9 +28,12 @@ const COMPETENCIES = [
 ];
 const PROJECTS = [
   { client: 'Presidential Hackathon · International Track', year: '2025',
-    title: 'Kalinga — AI care companion for migrant caregivers',
+    title: 'Kalinga: an AI care companion for migrant caregivers',
     metric: 'Frontend developer & planning contributor',
-    summary: 'Scoped the problem and MVP, then designed and built the multi-screen Flutter app: onboarding, patient profiles, daily check-ins, medication tracking and emergency help — multilingual and offline-first.',
+    summary: 'Scoped the problem and MVP, then designed and built the multi-screen Flutter app: onboarding, patient profiles, daily check-ins, medication tracking and emergency help, multilingual and offline-first.',
     tags: ['flutter', 'dart', 'ui/ux', 'figma'], href: 'https://github.com/dncnl/kalinga' },
 ];
-Object.assign(window, { SKILLS_A, SKILLS_B, COMPETENCIES, PROJECTS });
+const CERTIFICATIONS = [
+  { title: 'Certifications coming soon', issuer: 'Credly badges will land here once they\'re issued.' },
+];
+Object.assign(window, { SKILLS_A, SKILLS_B, COMPETENCIES, PROJECTS, CERTIFICATIONS });

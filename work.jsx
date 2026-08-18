@@ -17,9 +17,9 @@ function Work() {
         @media (prefers-reduced-motion:reduce){.work-slide{animation:none}}
       `}</style>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-        <Reveal><Eyebrow index="03" rule>projects</Eyebrow></Reveal>
+        <Reveal><Eyebrow index="02" rule>projects</Eyebrow></Reveal>
         <Reveal delay={60}>
-          <h2 style={{ fontSize: 'var(--fs-3xl)', maxWidth: '24ch', margin: 'var(--space-5) 0 0' }}>Built with a team, shipped under a deadline.</h2>
+          <h2 style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Projects</h2>
         </Reveal>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-5)', marginTop: 'var(--space-7)' }}>
           <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-4)' }}>
@@ -32,7 +32,7 @@ function Work() {
                   <div>
                     <Eyebrow>coursework & self-directed</Eyebrow>
                     <p style={{ marginTop: 'var(--space-4)', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', fontSize: 'var(--fs-sm)' }}>
-                      Machine learning, intelligent systems, software engineering and data structures & algorithms —
+                      Machine learning, intelligent systems, software engineering and data structures & algorithms,
                       plus predictive-model exercises, desktop tools and API work that live in the repos rather than in a case study.
                     </p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)', marginTop: 'var(--space-4)' }}>
