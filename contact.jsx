@@ -29,7 +29,7 @@ function Contact() {
               }}>
                 <a href="tel:+639614904854" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="phone" size={16} />+63 961 490 4854</a>
                 <a href="https://github.com/dncnl" target="_blank" rel="noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="github" size={16} />github.com/dncnl</a>
-                <a href="#" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="linkedin" size={16} />LinkedIn</a>
+                <a href="https://www.linkedin.com/in/daniel-martin-canlapan-1b2760380" target="_blank" rel="noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="linkedin" size={16} />LinkedIn</a>
                 <span style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)' }}><Icon name="map-pin" size={16} />San Joaquin, Mabalacat City, Pampanga</span>
               </div>
             </div>

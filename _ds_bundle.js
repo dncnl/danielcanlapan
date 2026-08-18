@@ -563,19 +563,27 @@ function Orb({
   size = 'var(--orb-size)',
   blur = 'var(--orb-blur)',
   color = 'var(--orb)',
+  interactive = false,
+  hoverColors = ['var(--ochre)', 'var(--rust)', 'var(--slate)', 'var(--moss)'],
   style,
   ...rest
 }) {
+  const [hoverIndex, setHoverIndex] = React.useState(-1);
+  const active = interactive && hoverIndex >= 0;
   return /*#__PURE__*/React.createElement("div", _extends({
     "aria-hidden": "true"
-  }, rest, {
+  }, interactive ? {
+    onMouseEnter: () => setHoverIndex(i => (i + 1) % hoverColors.length),
+    onMouseLeave: () => setHoverIndex(-1)
+  } : null, rest, {
     style: {
       width: size,
       height: size,
       borderRadius: 'var(--radius-full)',
-      background: color,
+      background: active ? hoverColors[hoverIndex] : color,
       filter: blur,
-      pointerEvents: 'none',
+      pointerEvents: interactive ? 'auto' : 'none',
+      transition: interactive ? 'background-color var(--dur-4) var(--ease-in-out)' : undefined,
       ...style
     }
   }));
@@ -832,7 +840,7 @@ Object.assign(__ds_scope, { ProjectCard });
 // components/core/TechIcon.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-const CDN = 'https://cdn.jsdelivr.net/npm/simple-icons@13.16.0/icons/';
+const CDN = 'https://cdn.jsdelivr.net/npm/simple-icons@16.28.0/icons/';
 
 /**
  * Monochrome brand glyph (Simple Icons) masked to currentColor, so the same
@@ -874,7 +882,9 @@ Object.assign(__ds_scope, { TechIcon });
 // components/content/SkillMarquee.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/** One continuous horizontal strip of skills; the track is duplicated for a seamless loop. */
+/** One continuous horizontal strip of skills. The number of copies of the set is measured
+ * with a ResizeObserver so the track always covers at least 2x the visible width — a short
+ * item list on a wide viewport would otherwise show a blank gap right before it loops. */
 function SkillMarquee({
   items = [],
   speed = 42,
@@ -884,34 +894,31 @@ function SkillMarquee({
   ...rest
 }) {
   const [paused, setPaused] = React.useState(false);
+  const [copies, setCopies] = React.useState(2);
   const id = React.useMemo(() => 'mq' + Math.random().toString(36).slice(2, 8), []);
-  const track = [...items, ...items];
-  return /*#__PURE__*/React.createElement("div", _extends({}, rest, {
-    onMouseEnter: () => pauseOnHover && setPaused(true),
-    onMouseLeave: () => setPaused(false),
-    style: {
-      overflow: 'hidden',
-      position: 'relative',
-      width: '100%',
-      borderTop: 'var(--border-hair) solid var(--border-hairline)',
-      borderBottom: 'var(--border-hair) solid var(--border-hairline)',
-      ...style
-    }
-  }), /*#__PURE__*/React.createElement("style", null, `@keyframes ${id}{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.${id}{animation:none!important}}`), /*#__PURE__*/React.createElement("div", {
-    className: id,
-    style: {
-      display: 'flex',
-      width: 'max-content',
-      animation: `${id} ${speed}s linear infinite`,
-      animationDirection: direction === 'right' ? 'reverse' : 'normal',
-      animationPlayState: paused ? 'paused' : 'running'
-    }
-  }, track.map((it, i) => {
+  const outerRef = React.useRef(null);
+  const setRef = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const outer = outerRef.current;
+    const set = setRef.current;
+    if (!outer || !set) return;
+    const measure = () => {
+      const setWidth = set.getBoundingClientRect().width;
+      const outerWidth = outer.getBoundingClientRect().width;
+      if (setWidth <= 0) return;
+      const needed = Math.max(2, Math.ceil(outerWidth * 2 / setWidth) + 1);
+      setCopies(c => c === needed ? c : needed);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(outer);
+    return () => ro.disconnect();
+  }, [items]);
+  const renderItem = (it, key) => {
     const name = typeof it === 'string' ? it : it.name;
     const slug = typeof it === 'string' ? undefined : it.slug;
     return /*#__PURE__*/React.createElement("span", {
-      key: i,
+      key,
       style: {
         display: 'inline-flex',
         alignItems: 'center',
@@ -931,7 +938,34 @@ function SkillMarquee({
         color: 'var(--text)'
       }
     }, name));
-  })));
+  };
+  return /*#__PURE__*/React.createElement("div", _extends({}, rest, {
+    ref: outerRef,
+    onMouseEnter: () => pauseOnHover && setPaused(true),
+    onMouseLeave: () => setPaused(false),
+    style: {
+      overflow: 'hidden',
+      position: 'relative',
+      width: '100%',
+      borderTop: 'var(--border-hair) solid var(--border-hairline)',
+      borderBottom: 'var(--border-hair) solid var(--border-hairline)',
+      ...style
+    }
+  }), /*#__PURE__*/React.createElement("style", null, `@keyframes ${id}{from{transform:translateX(0)}to{transform:translateX(-${(100 / copies).toFixed(4)}%)}}
+@media (prefers-reduced-motion:reduce){.${id}{animation:none!important}}`), /*#__PURE__*/React.createElement("div", {
+    className: id,
+    style: {
+      display: 'flex',
+      width: 'max-content',
+      animation: `${id} ${speed}s linear infinite`,
+      animationDirection: direction === 'right' ? 'reverse' : 'normal',
+      animationPlayState: paused ? 'paused' : 'running'
+    }
+  }, Array.from({ length: copies }).map((_, s) => /*#__PURE__*/React.createElement("div", {
+    key: s,
+    ref: s === 0 ? setRef : undefined,
+    style: { display: 'flex' }
+  }, items.map((it, i) => renderItem(it, s + '-' + i))))));
 }
 Object.assign(__ds_scope, { SkillMarquee });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/content/SkillMarquee.jsx", error: String((e && e.message) || e) }); }

@@ -1,4 +1,4 @@
-const { Eyebrow, Quote, Reveal } = window.DncnlDevDesignSystem_cd0d7e;
+const { Eyebrow, Reveal } = window.DncnlDevDesignSystem_cd0d7e;
 
 function Intro() {
   return (
@@ -7,9 +7,12 @@ function Intro() {
         <Reveal><Eyebrow index="02">a short version</Eyebrow></Reveal>
         <Reveal delay={60}><div aria-hidden="true" style={{ width: 40, height: 3, background: 'var(--ochre)', margin: 'var(--space-5) 0' }} /></Reveal>
         <Reveal delay={100}>
-          <Quote size="lg" style={{ maxWidth: '34ch', alignItems: 'center', textAlign: 'center' }}>
-            I'd rather be the person who checked than the person who assumed.
-          </Quote>
+          <h2 style={{ fontSize: 'var(--fs-3xl)', margin: 0 }}>Hi, I'm Daniel Martin.</h2>
+        </Reveal>
+        <Reveal delay={150}>
+          <p style={{ marginTop: 'var(--space-5)', maxWidth: '44ch', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)' }}>
+            I turn ambiguous problems into shipped software — the plan, the interface, the API behind it, and the write-up that explains why.
+          </p>
         </Reveal>
       </div>
     </section>

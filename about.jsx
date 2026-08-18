@@ -8,7 +8,7 @@ function About() {
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px,1.15fr) minmax(280px,0.75fr)', gap: 'clamp(32px,5vw,80px)', marginTop: 'var(--space-5)', alignItems: 'start' }}>
           <div>
             <Reveal delay={60}>
-              <h2 style={{ fontSize: 'var(--fs-3xl)', maxWidth: '20ch', margin: 0 }}>Hello — I'm Daniel.</h2>
+              <h2 style={{ fontSize: 'var(--fs-3xl)', maxWidth: '20ch', margin: 0 }}>The long version.</h2>
             </Reveal>
             <Reveal delay={120}>
               <p style={{ marginTop: 'var(--space-5)', maxWidth: 'var(--measure)', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)' }}>

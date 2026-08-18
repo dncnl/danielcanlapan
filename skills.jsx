@@ -1,4 +1,4 @@
-const { Eyebrow, Card, Tag, Reveal, Icon, TechIcon, SkillMarquee } = window.DncnlDevDesignSystem_cd0d7e;
+const { Eyebrow, Card, Tag, Reveal, Icon, TechIcon } = window.DncnlDevDesignSystem_cd0d7e;
 
 function Skills() {
   return (
@@ -31,11 +31,31 @@ function Skills() {
           </div>
         </div>
       </div>
-      <div style={{ marginTop: 'var(--space-8)' }}>
-        <div style={{ padding: '0 var(--page-pad-x) var(--space-4)', maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-          <Eyebrow>languages, libraries & tools</Eyebrow>
+      <div style={{ marginTop: 'var(--space-8)', padding: '0 var(--page-pad-x)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
+          <Reveal><Eyebrow rule>languages, libraries & tools</Eyebrow></Reveal>
+          <style>{`
+            .skill-chip{transition:var(--transition-ui)}
+            .skill-chip:hover{color:var(--ochre);border-color:var(--ochre);transform:translateY(-2px)}
+          `}</style>
+          <div style={{
+            display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'var(--space-3)',
+            marginTop: 'var(--space-6)',
+          }}>
+            {[...window.SKILLS_A, ...window.SKILLS_B].map((s, i) => (
+              <Reveal key={s.name} delay={16 * i}>
+                <span className="skill-chip" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 'var(--space-2)',
+                  padding: '10px var(--space-4)', border: 'var(--border-hair) solid var(--border-hairline)',
+                  fontFamily: 'var(--font-ui)', fontSize: 'var(--fs-sm)', color: 'var(--text)',
+                }}>
+                  <TechIcon slug={s.slug} size={17} />
+                  {s.name}
+                </span>
+              </Reveal>
+            ))}
+          </div>
         </div>
-        <SkillMarquee items={[...window.SKILLS_A, ...window.SKILLS_B]} speed={72} />
       </div>
     </section>
   );

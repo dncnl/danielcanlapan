@@ -13,7 +13,7 @@ function Footer() {
         </div>
         <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
           <IconButton icon="github" label="GitHub" size="sm" variant="ghost" onClick={() => window.open('https://github.com/dncnl', '_blank')} />
-          <IconButton icon="linkedin" label="LinkedIn" size="sm" variant="ghost" />
+          <IconButton icon="linkedin" label="LinkedIn" size="sm" variant="ghost" onClick={() => window.open('https://www.linkedin.com/in/daniel-martin-canlapan-1b2760380', '_blank', 'noopener,noreferrer')} />
           <IconButton icon="mail" label="Email" size="sm" variant="ghost" onClick={() => { window.location.href = 'mailto:danielcanlapan0402@gmail.com'; }} />
         </div>
       </div>

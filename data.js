@@ -3,8 +3,8 @@ const SKILLS_A = [
   { name: 'Python', slug: 'python' }, { name: 'Java', slug: 'openjdk' },
   { name: 'JavaScript', slug: 'javascript' }, { name: 'C#', slug: 'csharp' },
   { name: 'C++', slug: 'cplusplus' }, { name: 'Dart', slug: 'dart' },
-  { name: 'PostgreSQL', slug: 'postgresql' }, { name: 'Node.js', slug: 'nodedotjs' },
-  { name: 'Express', slug: 'express' },
+  { name: 'PostgreSQL', slug: 'postgresql' }, { name: 'Supabase', slug: 'supabase' },
+  { name: 'Node.js', slug: 'nodedotjs' }, { name: 'Express', slug: 'express' },
 ];
 const SKILLS_B = [
   { name: 'scikit-learn', slug: 'scikitlearn' }, { name: 'pandas', slug: 'pandas' },
@@ -14,8 +14,8 @@ const SKILLS_B = [
 ];
 const COMPETENCIES = [
   { key: 'full-stack web development', icon: 'server',
-    body: 'Responsive web applications and secure RESTful APIs with Node.js and Express, vanilla JavaScript on the front, PostgreSQL behind.',
-    tags: ['node.js', 'express', 'javascript', 'postgresql'] },
+    body: 'Responsive web applications and secure RESTful APIs with Node.js and Express, vanilla JavaScript on the front, PostgreSQL and Supabase behind.',
+    tags: ['node.js', 'express', 'javascript', 'postgresql', 'supabase'] },
   { key: 'machine learning & data analysis', icon: 'line-chart',
     body: 'Developing, training and evaluating predictive models — preprocessing, feature engineering and visualisation in Python.',
     tags: ['python', 'scikit-learn', 'pandas', 'numpy', 'seaborn'] },
