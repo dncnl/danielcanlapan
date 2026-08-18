@@ -48,7 +48,7 @@ function About() {
               <div style={{ paddingTop: 'var(--space-5)', borderTop: 'var(--rule)', display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
                 {['machine learning', 'intelligent systems', 'software engineering', 'data structures & algorithms'].map((t) => <Tag key={t}>{t}</Tag>)}
               </div>
-              <Button variant="secondary" as="a" href="../../assets/resume.docx" download>
+              <Button variant="secondary" as="a" href="assets/resume.docx" download>
                 Download résumé <Icon name="download" size={15} />
               </Button>
             </Card>
