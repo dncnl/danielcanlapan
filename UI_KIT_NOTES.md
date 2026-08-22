@@ -57,3 +57,15 @@ reveal-on-scroll (one observer per block, disconnected after firing, off under
   the hero/nav CTAs, a word-stagger reveal on the hero headline, and a scroll parallax on the
   hero `Orb`. All of it no-ops under `prefers-reduced-motion`, same as `Reveal`. See
   `ANIMATION_NOTES.md` (gitignored, local-only) for the full rationale.
+- `tokens/interactions.css` adds two hover-only classes — `.hover-card` (border tints to
+  `var(--ochre)`, plus any nested `.hover-accent` icon) and `.hover-tag` (color + border tint) —
+  used on every boxed `Card`/`Tag` across the site that didn't already have a bespoke hover
+  state (`ProjectCard` and `Button` already did, from `_ds_bundle.js`). Both use `!important`:
+  `_ds_bundle.js` components set border/color inline, which a plain external `:hover` rule can't
+  beat. Same reasoning fixed a real bug in `.skill-chip:hover` (color/border were silently
+  no-ops before) and in the nav's inactive-link hover (no feedback at all before).
+- `motion.jsx`'s `ScrollSection` wraps `Work` through `Footer` in `index.html`: each section
+  eases in (fade + rise) as a live function of scroll position while it's entering the
+  viewport, then latches once settled so scrolling back over it doesn't re-dim it. This is
+  intentionally distinct from `Reveal`'s fire-once-on-threshold trigger — see
+  `ANIMATION_NOTES.md` pass 3 for the full reasoning.

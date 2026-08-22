@@ -89,4 +89,77 @@ function SplitReveal({ text, as = 'span', delay = 0, stagger = 36, style, ...res
   );
 }
 
-Object.assign(window, { ScrollProgress, Magnetic, SplitReveal });
+/**
+ * Shared scroll-scrub engine: as `ref`'s element rises from `startPct` to `endPct` of the
+ * viewport height, live-applies opacity (`opacityFrom` → 1) and a translateY (`rise` → 0px)
+ * directly to the DOM node — a continuous function of scroll position (GSAP ScrollTrigger
+ * `scrub` concept), not Reveal's fire-once-on-threshold trigger. Latches once fully settled so
+ * scrolling back over already-shown content doesn't re-dim it. Returns false (do nothing) under
+ * prefers-reduced-motion.
+ */
+function useScrollScrub(ref, { startPct = 1.05, endPct = 0.3, opacityFrom = 0.45, rise = 28 } = {}) {
+  const enabled = React.useMemo(() => !prefersReducedMotion(), []);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!enabled || !el) return;
+    let raf = null;
+    let settled = false;
+    const apply = () => {
+      raf = null;
+      if (settled) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * startPct;
+      const end = vh * endPct;
+      const progress = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+      el.style.opacity = (opacityFrom + progress * (1 - opacityFrom)).toFixed(3);
+      el.style.transform = `translateY(${((1 - progress) * rise).toFixed(1)}px)`;
+      if (progress >= 1) settled = true;
+    };
+    const onScroll = () => { if (raf == null) raf = window.requestAnimationFrame(apply); };
+    apply();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf != null) window.cancelAnimationFrame(raf);
+    };
+  }, [enabled]);
+  return enabled;
+}
+
+/** Wraps a whole section so it eases into place (fade + rise) as it's scrolled up into view. */
+function ScrollSection({ children, style, ...rest }) {
+  const ref = React.useRef(null);
+  const enabled = useScrollScrub(ref, { startPct: 1.05, endPct: 0.3, opacityFrom: 0.45, rise: 28 });
+  if (!enabled) return children;
+  return (
+    <div ref={ref} style={{ willChange: 'transform, opacity', ...style }} {...rest}>
+      {children}
+    </div>
+  );
+}
+
+/**
+ * A section headline that rises into place on its own scroll-scrub — meant to read as the one
+ * clear "this section just arrived" moment, distinct from ScrollSection's subtler whole-block
+ * ease (which stays, as ambient backdrop motion). Full opacity range (not ScrollSection's
+ * dimmed floor). Starts just below the viewport (startPct > 1) so it's already animating the
+ * instant it crosses the fold, and doesn't resolve until past the middle of the screen — the
+ * zone has to span a real chunk of scroll distance or it finishes before anyone notices it
+ * started (the bug behind "why are the headers still static").
+ */
+function HeaderRise({ children, as = 'h2', style, ...rest }) {
+  const ref = React.useRef(null);
+  const enabled = useScrollScrub(ref, { startPct: 1.08, endPct: 0.55, opacityFrom: 0, rise: 24 });
+  const Tag = as;
+  if (!enabled) return <Tag style={style} {...rest}>{children}</Tag>;
+  return (
+    <Tag ref={ref} style={{ willChange: 'transform, opacity', ...style }} {...rest}>
+      {children}
+    </Tag>
+  );
+}
+
+Object.assign(window, { ScrollProgress, Magnetic, SplitReveal, ScrollSection, HeaderRise });

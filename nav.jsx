@@ -24,6 +24,8 @@ function Nav({ theme, setTheme, active, onNav }) {
         .nav-links::-webkit-scrollbar{display:none}
         .nav-indicator{transition:left var(--dur-3) var(--ease-mech),width var(--dur-3) var(--ease-mech),opacity var(--dur-2) var(--ease-out)}
         @media (prefers-reduced-motion:reduce){.nav-indicator{transition:opacity var(--dur-2) var(--ease-out)}}
+        .nav-link{color:var(--text-muted)}
+        .nav-link:hover{color:var(--text)}
         @media (max-width:640px){
           .nav-row{height:64px !important;gap:var(--space-4) !important}
           .nav-links{gap:var(--space-4) !important}
@@ -36,11 +38,12 @@ function Nav({ theme, setTheme, active, onNav }) {
         <nav className="nav-links" style={{ display: 'flex', gap: 'var(--space-5)', marginLeft: 'auto', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {links.map(([id, n]) => (
             <a key={id} ref={(el) => { linkRefs.current[id] = el; }} href={'#' + id} onClick={(e) => { e.preventDefault(); onNav(id); }}
+              className="nav-link"
               style={{
                 flex: '0 0 auto',
                 fontFamily: 'var(--font-ui)', fontSize: 'var(--fs-2xs)', letterSpacing: 'var(--tracking-wide)',
                 textTransform: 'uppercase', textDecoration: 'none',
-                color: active === id ? 'var(--text)' : 'var(--text-muted)',
+                color: active === id ? 'var(--text)' : undefined,
                 borderBottom: '2px solid transparent',
                 paddingBottom: 3,
                 transition: 'var(--transition-ui)',

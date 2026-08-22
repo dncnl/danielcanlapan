@@ -5,4 +5,5 @@
 @import "tokens/borders.css";
 @import "tokens/shadows.css";
 @import "tokens/motion.css";
+@import "tokens/interactions.css";
 @import "tokens/base.css";
