@@ -10,7 +10,7 @@ function CopyEmailRow({ email }) {
     window.setTimeout(() => setCopied(false), 1800);
   };
   return (
-    <div style={{ display: 'flex', width: '100%', border: 'var(--border-2) solid var(--border)' }}>
+    <div className="hover-card" style={{ display: 'flex', width: '100%', border: 'var(--border-2) solid var(--border)' }}>
       <a href={'mailto:' + email} style={{
         flex: '1 1 auto', minWidth: 0, display: 'flex', alignItems: 'center', gap: 'var(--space-3)',
         padding: 'var(--space-4) var(--space-5)', textDecoration: 'none', color: 'var(--text)',
@@ -36,9 +36,7 @@ function Contact() {
     <section id="contact" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'var(--surface)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <Reveal><Eyebrow index="06" rule>contact</Eyebrow></Reveal>
-        <Reveal delay={60}>
-          <h2 style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Contact</h2>
-        </Reveal>
+        <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Contact</HeaderRise>
         <Reveal delay={100}>
           <p style={{ marginTop: 'var(--space-5)', maxWidth: '52ch', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)' }}>
             Internships, project work, collaborations, or just a question about something I've built. I usually reply within a couple of days.

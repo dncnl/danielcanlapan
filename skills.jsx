@@ -6,9 +6,7 @@ function Skills() {
       <div style={{ padding: '0 var(--page-pad-x)' }}>
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <Reveal><Eyebrow index="03" rule>what I do</Eyebrow></Reveal>
-          <Reveal delay={60}>
-            <h2 style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Skills</h2>
-          </Reveal>
+          <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Skills</HeaderRise>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(max(260px, (100% - var(--space-6)) / 2), 1fr))',
@@ -16,9 +14,9 @@ function Skills() {
           }}>
             {window.COMPETENCIES.map((c, i) => (
               <Reveal key={c.key} delay={40 * i}>
-                <Card style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+                <Card className="hover-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                    <Icon name={c.icon} size={20} />
+                    <Icon name={c.icon} size={20} className="hover-accent" style={{ transition: 'var(--transition-ui)' }} />
                     <span style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-lg)' }}>{c.key}</span>
                   </div>
                   <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)', fontSize: 'var(--fs-sm)' }}>{c.body}</p>
@@ -36,7 +34,7 @@ function Skills() {
           <Reveal><Eyebrow rule>languages, libraries & tools</Eyebrow></Reveal>
           <style>{`
             .skill-chip{transition:var(--transition-ui)}
-            .skill-chip:hover{color:var(--ochre);border-color:var(--ochre);transform:translateY(-2px)}
+            .skill-chip:hover{color:var(--ochre) !important;border-color:var(--ochre) !important;transform:translateY(-2px)}
           `}</style>
           <div style={{
             display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'var(--space-3)',

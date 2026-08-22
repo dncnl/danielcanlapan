@@ -11,14 +11,12 @@ function Certifications() {
     <section id="certifications" style={{ padding: 'var(--section-y) var(--page-pad-x)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <Reveal><Eyebrow index="04" rule>certifications</Eyebrow></Reveal>
-        <Reveal delay={60}>
-          <h2 style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Certifications</h2>
-        </Reveal>
+        <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Certifications</HeaderRise>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-4)', marginTop: 'var(--space-6)' }}>
           <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-4)' }}>
             {slides.length > 1 && <IconButton icon="chevron-left" label="Previous" size="sm" variant="ghost" onClick={() => go(-1)} />}
-            <Card variant="hairline" style={{ width: '100%', maxWidth: 360, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 'var(--space-3)', padding: 'var(--space-5)' }}>
-              <Icon name="award" size={22} style={{ color: 'var(--text-subtle)' }} />
+            <Card variant="hairline" className="hover-card" style={{ width: '100%', maxWidth: 360, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 'var(--space-3)', padding: 'var(--space-5)' }}>
+              <Icon name="award" size={22} className="hover-accent" style={{ color: 'var(--text-subtle)', transition: 'var(--transition-ui)' }} />
               <div style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-md)' }}>{slide.title}</div>
               <p style={{ margin: 0, fontSize: 'var(--fs-xs)', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)' }}>{slide.issuer}</p>
             </Card>

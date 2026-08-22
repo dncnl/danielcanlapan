@@ -18,9 +18,7 @@ function Work() {
       `}</style>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <Reveal><Eyebrow index="02" rule>projects</Eyebrow></Reveal>
-        <Reveal delay={60}>
-          <h2 style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Projects</h2>
-        </Reveal>
+        <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Projects</HeaderRise>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-5)', marginTop: 'var(--space-7)' }}>
           <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-4)' }}>
             <IconButton icon="chevron-left" label="Previous" size="sm" variant="ghost" onClick={() => go(-1)} />
@@ -28,7 +26,7 @@ function Work() {
               {slide.kind === 'project' ? (
                 <ProjectCard {...slide.data} target="_blank" rel="noreferrer" />
               ) : (
-                <Card variant="hairline" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 'var(--space-5)' }}>
+                <Card variant="hairline" className="hover-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 'var(--space-5)' }}>
                   <div>
                     <Eyebrow>coursework & self-directed</Eyebrow>
                     <p style={{ marginTop: 'var(--space-4)', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', fontSize: 'var(--fs-sm)' }}>
@@ -36,7 +34,7 @@ function Work() {
                       plus predictive-model exercises, desktop tools and API work that live in the repos rather than in a case study.
                     </p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)', marginTop: 'var(--space-4)' }}>
-                      {['machine learning', 'intelligent systems', 'software engineering', 'dsa'].map((t) => <Tag key={t}>{t}</Tag>)}
+                      {['machine learning', 'intelligent systems', 'software engineering', 'dsa'].map((t) => <Tag key={t} className="hover-tag">{t}</Tag>)}
                     </div>
                   </div>
                   <Button variant="secondary" as="a" href="https://github.com/dncnl" target="_blank" rel="noreferrer">

@@ -1,0 +1,10 @@
+/* Shared hover micro-interactions for boxed/chip content — a quiet accent-color
+   highlight, nothing that moves. Components from _ds_bundle.js set border/color
+   inline, which normal-specificity external CSS can't beat, so these use
+   !important the same way nav.jsx's responsive overrides already do. */
+.hover-card{transition:var(--transition-ui)}
+.hover-card:hover{border-color:var(--ochre) !important}
+.hover-card:hover .hover-accent{color:var(--ochre) !important}
+
+.hover-tag{transition:var(--transition-ui)}
+.hover-tag:hover{color:var(--ochre) !important;border-color:var(--ochre) !important}

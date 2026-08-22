@@ -1,0 +1,7 @@
+# Local-only notes, not meant for the public repo
+ANIMATION_NOTES.md
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode/
