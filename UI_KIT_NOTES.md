@@ -14,6 +14,7 @@ reveal-on-scroll (one observer per block, disconnected after firing, off under
 | File | What it is |
 |---|---|
 | `data.js` | All CV-derived content: skills, competencies, projects, certifications |
+| `motion.jsx` | Hand-written animation helpers (`ScrollProgress`, `Magnetic`, `SplitReveal`) — not part of `_ds_bundle.js`, loaded before the section files that use them |
 | `nav.jsx` | Sticky header: wordmark, numbered links, ThemeToggle, GitHub, CV, CTA |
 | `hero.jsx` | Headline, two CTAs (work + CV), and the skill marquee beneath it |
 | `work.jsx` | Kalinga case study + an honest "coursework & self-directed" card |
@@ -51,3 +52,8 @@ reveal-on-scroll (one observer per block, disconnected after firing, off under
 - LinkedIn points at `#` — the CV lists the label but no URL.
 - Tech glyphs are Simple Icons masked to `currentColor`, so one bold SVG serves both themes.
   Tkinter, Seaborn, CustomTkinter, VS Code and C# appear name-only where no glyph exists.
+- `motion.jsx` layers on top of the existing `Reveal` fade-up pattern rather than replacing it:
+  a fixed scroll-progress bar, a sliding active-link indicator in the nav, a magnetic hover on
+  the hero/nav CTAs, a word-stagger reveal on the hero headline, and a scroll parallax on the
+  hero `Orb`. All of it no-ops under `prefers-reduced-motion`, same as `Reveal`. See
+  `ANIMATION_NOTES.md` (gitignored, local-only) for the full rationale.

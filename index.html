@@ -10,6 +10,7 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="_ds_bundle.js"></script>
 <script src="data.js"></script>
+<script type="text/babel" src="motion.jsx"></script>
 <script type="text/babel" src="nav.jsx"></script>
 <script type="text/babel" src="hero.jsx"></script>
 <script type="text/babel" src="work.jsx"></script>
@@ -48,6 +49,7 @@ function Site() {
   };
   return (
     <React.Fragment>
+      <ScrollProgress />
       <Nav theme={theme} setTheme={setTheme} active={active} onNav={onNav} />
       <Hero onNav={onNav} />
       <Work />
