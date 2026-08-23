@@ -22,9 +22,19 @@ function Work() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-5)', marginTop: 'var(--space-7)' }}>
           <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-4)' }}>
             <IconButton icon="chevron-left" label="Previous" size="sm" variant="ghost" onClick={() => go(-1)} />
-            <div key={index} className="work-slide" style={{ width: '100%', maxWidth: 400 }}>
+            <div key={index} className="work-slide" style={{ width: '100%', maxWidth: 880 }}>
               {slide.kind === 'project' ? (
-                <ProjectCard {...slide.data} target="_blank" rel="noreferrer" />
+                <React.Fragment>
+                  <ProjectCard {...slide.data} target="_blank" rel="noreferrer" />
+                  {slide.data.submission && (
+                    <p style={{ marginTop: 'var(--space-3)', textAlign: 'center', fontSize: 'var(--fs-2xs)', color: 'var(--text-subtle)', lineHeight: 'var(--lh-body)' }}>
+                      {slide.data.submission.note}{' '}
+                      <a href={slide.data.submission.href} target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)' }}>
+                        {slide.data.submission.label}
+                      </a>
+                    </p>
+                  )}
+                </React.Fragment>
               ) : (
                 <Card variant="hairline" className="hover-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 'var(--space-5)' }}>
                   <div>
