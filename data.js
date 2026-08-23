@@ -31,7 +31,13 @@ const PROJECTS = [
     title: 'Kalinga: an AI care companion for migrant caregivers',
     metric: 'Frontend developer & planning contributor',
     summary: 'Scoped the problem and MVP, then designed and built the multi-screen Flutter app: onboarding, patient profiles, daily check-ins, medication tracking and emergency help, multilingual and offline-first.',
-    tags: ['flutter', 'dart', 'ui/ux', 'figma'], href: 'https://github.com/dncnl/kalinga' },
+    tags: ['flutter', 'dart', 'ui/ux', 'figma'], href: 'https://github.com/dncnl/kalinga',
+    image: 'assets/projects/kalinga/kalinga-cover.png',
+    submission: {
+      note: 'Built as an application / initial submission for the',
+      label: 'Presidential Hackathon — International Track',
+      href: 'https://presidential-hackathon.taiwan.gov.tw/en/international-track/',
+    } },
 ];
 const CERTIFICATIONS = [
   { title: 'Introduction to Data Science', issuer: 'Cisco',

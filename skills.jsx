@@ -9,17 +9,17 @@ function Skills() {
           <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Skills</HeaderRise>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(max(260px, (100% - var(--space-6)) / 2), 1fr))',
-            gap: 'var(--space-6)', justifyContent: 'center', maxWidth: 920, margin: 'var(--space-7) auto 0',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: 'var(--space-4)', justifyContent: 'center', maxWidth: 1040, margin: 'var(--space-6) auto 0',
           }}>
             {window.COMPETENCIES.map((c, i) => (
               <Reveal key={c.key} delay={40 * i}>
-                <Card className="hover-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-                    <Icon name={c.icon} size={20} className="hover-accent" style={{ transition: 'var(--transition-ui)' }} />
-                    <span style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-lg)' }}>{c.key}</span>
+                <Card className="hover-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', padding: 'var(--space-4)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                    <Icon name={c.icon} size={15} className="hover-accent" style={{ transition: 'var(--transition-ui)' }} />
+                    <span style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-sm)' }}>{c.key}</span>
                   </div>
-                  <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)', fontSize: 'var(--fs-sm)' }}>{c.body}</p>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)', fontSize: 'var(--fs-xs)' }}>{c.body}</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)', marginTop: 'auto' }}>
                     {c.tags.map((t) => <Tag key={t}>{t}</Tag>)}
                   </div>

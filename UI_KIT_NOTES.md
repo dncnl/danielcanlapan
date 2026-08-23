@@ -19,7 +19,7 @@ reveal-on-scroll (one observer per block, disconnected after firing, off under
 | `hero.jsx` | Headline, two CTAs (work + CV), and the skill marquee beneath it |
 | `work.jsx` | Kalinga case study + an honest "coursework & self-directed" card |
 | `skills.jsx` | Four competencies as a centered card grid, then the full tech ticker |
-| `certifications.jsx` | Discrete placeholder carousel; only shows arrows/dots once there's more than one entry |
+| `certifications.jsx` | Credly badges as a centered card grid, same pattern as Skills' competencies |
 | `about.jsx` | Single about section: portrait, intro copy, education, CV download |
 | `contact.jsx` | Compact copy-email row plus GitHub/LinkedIn/location, no form |
 | `footer.jsx` | Wordmark, email, social IconButtons |
@@ -49,7 +49,6 @@ reveal-on-scroll (one observer per block, disconnected after firing, off under
   sizing in `tokens/` computes against the real device width). Below 640px the nav hides its
   GitHub/CV/CTA buttons and lets the link row scroll horizontally instead of overflowing.
   Below 760px, About's two-column grid collapses to one column.
-- LinkedIn points at `#` — the CV lists the label but no URL.
 - Tech glyphs are Simple Icons masked to `currentColor`, so one bold SVG serves both themes.
   Tkinter, Seaborn, CustomTkinter, VS Code and C# appear name-only where no glyph exists.
 - `motion.jsx` layers on top of the existing `Reveal` fade-up pattern rather than replacing it:
