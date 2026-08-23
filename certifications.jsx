@@ -1,4 +1,4 @@
-const { Eyebrow, Card, Reveal, Icon, IconButton } = window.DncnlDevDesignSystem_cd0d7e;
+const { Eyebrow, Card, Reveal, Icon, IconButton, Button } = window.DncnlDevDesignSystem_cd0d7e;
 
 function Certifications() {
   const slides = window.CERTIFICATIONS || [];
@@ -16,9 +16,24 @@ function Certifications() {
           <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-4)' }}>
             {slides.length > 1 && <IconButton icon="chevron-left" label="Previous" size="sm" variant="ghost" onClick={() => go(-1)} />}
             <Card variant="hairline" className="hover-card" style={{ width: '100%', maxWidth: 360, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 'var(--space-3)', padding: 'var(--space-5)' }}>
-              <Icon name="award" size={22} className="hover-accent" style={{ color: 'var(--text-subtle)', transition: 'var(--transition-ui)' }} />
+              {slide.badge ? (
+                <img src={slide.badge} alt={`${slide.title} badge`} width={160} height={160}
+                  style={{ width: 160, height: 160, objectFit: 'contain' }} />
+              ) : (
+                <Icon name="award" size={40} className="hover-accent" style={{ color: 'var(--text-subtle)', transition: 'var(--transition-ui)' }} />
+              )}
               <div style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-md)' }}>{slide.title}</div>
               <p style={{ margin: 0, fontSize: 'var(--fs-xs)', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)' }}>{slide.issuer}</p>
+              {slide.credentialId && (
+                <p style={{ margin: 0, fontSize: 'var(--fs-2xs)', color: 'var(--text-subtle)', lineHeight: 'var(--lh-body)' }}>
+                  Credential ID: {slide.credentialId}
+                </p>
+              )}
+              {slide.href && (
+                <Button variant="secondary" size="sm" as="a" href={slide.href} target="_blank" rel="noreferrer">
+                  View credential <Icon name="arrow-up-right" size={15} />
+                </Button>
+              )}
             </Card>
             {slides.length > 1 && <IconButton icon="chevron-right" label="Next" size="sm" variant="ghost" onClick={() => go(1)} />}
           </div>

@@ -34,6 +34,13 @@ const PROJECTS = [
     tags: ['flutter', 'dart', 'ui/ux', 'figma'], href: 'https://github.com/dncnl/kalinga' },
 ];
 const CERTIFICATIONS = [
-  { title: 'Certifications coming soon', issuer: 'Credly badges will land here once they\'re issued.' },
+  { title: 'Introduction to Data Science', issuer: 'Cisco',
+    badge: 'assets/credentials/cisco-intro-to-data-science.png',
+    credentialId: '95acc8ae-eb98-4e9d-9779-076f3c5820db',
+    href: 'https://www.credly.com/badges/95acc8ae-eb98-4e9d-9779-076f3c5820db/public_url' },
+  { title: 'Introduction to Cybersecurity', issuer: 'Cisco',
+    badge: 'assets/credentials/cisco-intro-to-cybersecurity.png',
+    issued: '5/4/2026', credentialId: 'c81fc21d-45e7-48a7-818b-af6fe0832e6b',
+    href: 'https://www.credly.com/badges/c81fc21d-45e7-48a7-818b-af6fe0832e6b/public_url' },
 ];
 Object.assign(window, { SKILLS_A, SKILLS_B, COMPETENCIES, PROJECTS, CERTIFICATIONS });
