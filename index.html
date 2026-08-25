@@ -1,7 +1,7 @@
 <!-- @dsCard group="dncnl.dev" viewport="1440x860" name="Portfolio — home" subtitle="Hero, skill marquee, projects, competencies, about, contact. Light/dark toggle in the nav." -->
 <!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>dncnl.dev — Daniel Martin Canlapan</title>
+<title>Daniel Martin Canlapan - Portfolio</title>
 <link rel="stylesheet" href="styles.css">
 <style>html{scroll-behavior:smooth}body{min-height:100vh}</style>
 </head><body><div id="root"></div>
@@ -16,11 +16,12 @@
 <script type="text/babel" src="work.jsx"></script>
 <script type="text/babel" src="skills.jsx"></script>
 <script type="text/babel" src="certifications.jsx"></script>
+<script type="text/babel" src="github.jsx"></script>
 <script type="text/babel" src="about.jsx"></script>
 <script type="text/babel" src="contact.jsx"></script>
 <script type="text/babel" src="footer.jsx"></script>
 <script type="text/babel">
-const SECTIONS = ['top', 'work', 'skills', 'certifications', 'about', 'contact'];
+const SECTIONS = ['top', 'work', 'skills', 'certifications', 'github', 'about', 'contact'];
 
 // getBoundingClientRect + scrollY, not offsetTop: offsetTop is relative to the nearest
 // ancestor that establishes a containing block, and ScrollSection's wrapper divs set
@@ -31,7 +32,7 @@ const SECTIONS = ['top', 'work', 'skills', 'certifications', 'about', 'contact']
 const docTop = (el) => el.getBoundingClientRect().top + window.scrollY;
 
 function Site() {
-  const [theme, setTheme] = React.useState(() => localStorage.getItem('dncnl-theme') || 'dark');
+  const [theme, setTheme] = React.useState(() => localStorage.getItem('dncnl-theme') || 'light');
   const [active, setActive] = React.useState('top');
   React.useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -63,6 +64,7 @@ function Site() {
       <ScrollSection><Work /></ScrollSection>
       <ScrollSection><Skills /></ScrollSection>
       <ScrollSection><Certifications /></ScrollSection>
+      <ScrollSection><GitHubActivity /></ScrollSection>
       <ScrollSection><About /></ScrollSection>
       <ScrollSection><Contact /></ScrollSection>
       <ScrollSection><Footer /></ScrollSection>
