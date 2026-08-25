@@ -15,7 +15,7 @@ function Hero({ onNav }) {
   }, []);
   return (
     <React.Fragment>
-      <section id="top" style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(56px,7vw,104px) var(--page-pad-x) clamp(40px,5vw,72px)' }}>
+      <section id="top" aria-label="Introduction" style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(56px,7vw,104px) var(--page-pad-x) clamp(40px,5vw,72px)' }}>
         <div ref={orbRef} style={{ position: 'absolute', right: '-22%', top: '-46%', willChange: 'transform' }}>
           <Orb interactive style={{ opacity: 0.85 }} />
         </div>
@@ -27,7 +27,7 @@ function Hero({ onNav }) {
             style={{ fontFamily: 'var(--font-hero)', fontWeight: 700, letterSpacing: 'var(--tracking-hero)', lineHeight: 'var(--lh-solid)', fontSize: 'var(--fs-hero)', margin: 0, paddingTop: '0.14em', maxWidth: '15ch', textWrap: 'balance' }} />
           <Reveal delay={120}>
             <p style={{ marginTop: 'var(--space-6)', maxWidth: '58ch', fontSize: 'var(--fs-md)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)', color: 'var(--text-muted)' }}>
-              Software solutions across web, machine learning, and interfaces, backed by documentation that keeps it legible.
+              Most recently: Kalinga, an AI care companion for migrant caregivers, built for the Presidential Hackathon's international track.
             </p>
           </Reveal>
           <Reveal delay={180}>

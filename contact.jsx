@@ -19,7 +19,7 @@ function CopyEmailRow({ email }) {
         <Icon name="mail" size={18} style={{ flex: '0 0 auto' }} />
         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{email}</span>
       </a>
-      <button onClick={copy} aria-label={'copy ' + email} style={{
+      <button onClick={copy} aria-label={copied ? 'copied' : 'copy ' + email} style={{
         flex: '0 0 auto', display: 'inline-flex', alignItems: 'center', gap: 'var(--space-2)',
         padding: '0 var(--space-5)', border: 0, borderLeft: 'var(--border-2) solid var(--border)',
         background: 'transparent', cursor: 'pointer', color: 'var(--text-muted)',
@@ -27,16 +27,19 @@ function CopyEmailRow({ email }) {
       }}>
         <Icon name={copied ? 'check' : 'copy'} size={14} />{copied ? 'copied' : 'copy'}
       </button>
+      <span aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+        {copied ? 'address copied to your clipboard' : ''}
+      </span>
     </div>
   );
 }
 
 function Contact() {
   return (
-    <section id="contact" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--space-10))' }}>
+    <section id="contact" aria-labelledby="contact-heading" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--space-10))' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <Reveal><Eyebrow index="07" rule>contact</Eyebrow></Reveal>
-        <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Contact</HeaderRise>
+        <HeaderRise id="contact-heading" style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Contact</HeaderRise>
         <Reveal delay={100}>
           <p style={{ marginTop: 'var(--space-5)', maxWidth: '52ch', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)' }}>
             Internships, project work, collaborations, or just a question about something I've built. I usually reply within a couple of days.
@@ -53,8 +56,8 @@ function Contact() {
             marginTop: 'var(--space-7)', paddingTop: 'var(--space-6)', borderTop: 'var(--rule)',
             width: '100%', maxWidth: 480, fontSize: 'var(--fs-sm)',
           }}>
-            <a href="https://github.com/dncnl" target="_blank" rel="noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="github" size={16} />github.com/dncnl</a>
-            <a href="https://www.linkedin.com/in/daniel-martin-canlapan-1b2760380" target="_blank" rel="noreferrer" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="linkedin" size={16} />LinkedIn</a>
+            <a href="https://github.com/dncnl" target="_blank" rel="noreferrer" aria-label="github.com/dncnl, opens in a new tab" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="github" size={16} />github.com/dncnl</a>
+            <a href="https://www.linkedin.com/in/daniel-martin-canlapan-1b2760380" target="_blank" rel="noreferrer" aria-label="LinkedIn, opens in a new tab" style={{ display: 'flex', gap: 10, alignItems: 'center' }}><Icon name="linkedin" size={16} />LinkedIn</a>
             <span style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)' }}><Icon name="map-pin" size={16} />Philippines</span>
           </div>
         </Reveal>

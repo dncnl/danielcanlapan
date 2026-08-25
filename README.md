@@ -1,8 +1,18 @@
 # dncnl.dev — portfolio
 
-Personal portfolio for **Daniel Martin G. Canlapan**, a fourth-year Computer Science student
-at Angeles University Foundation. One scrolling page — hero, projects, skills, certifications,
-about, contact — all content sourced from his résumé.
+Hi, I'm Daniel Martin G. Canlapan — a fourth-year Computer Science student at Angeles
+University Foundation. This repo is my personal portfolio: a single scrolling page covering my
+work, skills, certifications, GitHub activity, about, and contact, with all content pulled from
+my résumé.
+
+I built and iterated on it over several real development passes rather than generating it in
+one shot: a hand-rolled scroll-driven reveal/animation layer (`motion.jsx`), a token-based
+design system (`tokens/`) driving color, spacing, type and motion across both themes, and a
+shared component library synced in from a separate design-system project (`_ds_bundle.js`).
+Features like the credentials section and the live GitHub activity feed landed as their own
+separate changes, not part of an initial pass — see `UI_KIT_NOTES.md` for the build decisions
+and tradeoffs behind it.
+
 
 ## Stack
 
@@ -32,7 +42,7 @@ works too, but relative asset lookups behave better served over http.)
 | `_ds_bundle.js` | Generated shared component library (buttons, cards, icons, tags, …) |
 | `tokens/` | CSS custom properties — color, spacing, typography, motion, shadows, borders |
 | `motion.jsx` | Scroll/animation helpers layered on top of the base reveal pattern |
-| `hero.jsx`, `work.jsx`, `skills.jsx`, `certifications.jsx`, `about.jsx`, `contact.jsx`, `footer.jsx`, `nav.jsx` | One file per page section |
+| `hero.jsx`, `work.jsx`, `skills.jsx`, `certifications.jsx`, `github.jsx`, `about.jsx`, `contact.jsx`, `footer.jsx`, `nav.jsx` | One file per page section |
 | `assets/` | Résumé PDF, portrait, and certification badge images |
 
 See `UI_KIT_NOTES.md` for the fuller set of build/design decisions behind the site.

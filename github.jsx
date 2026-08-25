@@ -105,27 +105,40 @@ function GitHubActivity() {
   }, []);
 
   const loading = !error && (!profile || !contributions);
-  const totalLastYear = contributions && (contributions.total?.lastYear ?? contributions.contributions.reduce((sum, d) => sum + d.count, 0));
+  const totalLastYear = contributions?.total?.lastYear ?? (Array.isArray(contributions?.contributions)
+    ? contributions.contributions.reduce((sum, d) => sum + d.count, 0)
+    : 0);
 
   return (
-    <section id="github" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--space-10))' }}>
+    <section id="github" aria-labelledby="github-heading" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--space-10))' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <Reveal><Eyebrow index="05" rule>github</Eyebrow></Reveal>
-        <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>GitHub activity</HeaderRise>
+        <HeaderRise id="github-heading" style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>GitHub activity</HeaderRise>
 
         {error && (
           <Reveal delay={80}>
             <p style={{ marginTop: 'var(--space-6)', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)' }}>
               Couldn't load live GitHub data right now.
             </p>
-            <Button variant="secondary" as="a" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer" style={{ marginTop: 'var(--space-4)' }}>
+            <Button variant="secondary" as="a" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer" aria-label="View profile on GitHub, opens in a new tab" style={{ marginTop: 'var(--space-4)' }}>
               View profile on GitHub <Icon name="arrow-up-right" size={15} />
             </Button>
           </Reveal>
         )}
 
         {loading && (
-          <p style={{ marginTop: 'var(--space-6)', color: 'var(--text-subtle)' }}>Loading activity…</p>
+          <div aria-hidden="true" style={{ marginTop: 'var(--space-7)' }}>
+            <div style={{
+              display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: 'var(--space-5)', maxWidth: 720, margin: '0 auto',
+            }}>
+              {[0, 1, 2].map((i) => (
+                <div key={i} style={{ height: 104, borderRadius: 'var(--radius-1)', background: 'var(--surface-sunken)' }} />
+              ))}
+            </div>
+            <div style={{ height: 220, maxWidth: 920, margin: 'var(--space-6) auto 0', borderRadius: 'var(--radius-1)', background: 'var(--surface-sunken)' }} />
+            <p style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>Loading activity…</p>
+          </div>
         )}
 
         {!error && !loading && (
@@ -153,7 +166,7 @@ function GitHubActivity() {
 
             <Reveal delay={200}>
               <div style={{ marginTop: 'var(--space-6)', textAlign: 'center' }}>
-                <Button variant="secondary" as="a" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer">
+                <Button variant="secondary" as="a" href={`https://github.com/${GITHUB_USERNAME}`} target="_blank" rel="noreferrer" aria-label="View full profile, opens in a new tab">
                   View full profile <Icon name="arrow-up-right" size={15} />
                 </Button>
               </div>

@@ -2,11 +2,11 @@ const { Eyebrow, Card, Tag, Reveal, Icon, TechIcon } = window.DncnlDevDesignSyst
 
 function Skills() {
   return (
-    <section id="skills" style={{ padding: 'var(--section-y) 0', background: 'linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--space-10))' }}>
+    <section id="skills" aria-labelledby="skills-heading" style={{ padding: 'var(--section-y) 0', background: 'linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--space-10))' }}>
       <div style={{ padding: '0 var(--page-pad-x)' }}>
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <Reveal><Eyebrow index="03" rule>what I do</Eyebrow></Reveal>
-          <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Skills</HeaderRise>
+          <HeaderRise id="skills-heading" style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Skills</HeaderRise>
           <style>{`
             @keyframes iconGlow{0%,100%{opacity:1}50%{opacity:.5}}
             .icon-glow{animation:iconGlow 3.6s ease-in-out infinite}
@@ -22,7 +22,7 @@ function Skills() {
                 <Card className="hover-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', padding: 'var(--space-4)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
                     <Icon name={c.icon} size={15} className="hover-accent icon-glow" style={{ transition: 'var(--transition-ui)', animationDelay: (i * 260) + 'ms' }} />
-                    <span style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-sm)' }}>{c.key}</span>
+                    <h3 style={{ margin: 0, fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-sm)' }}>{c.key}</h3>
                   </div>
                   <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)', fontSize: 'var(--fs-xs)' }}>{c.body}</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)', marginTop: 'auto' }}>

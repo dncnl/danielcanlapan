@@ -4,6 +4,7 @@ function Nav({ theme, setTheme, active, onNav }) {
   const links = [['work', '02'], ['skills', '03'], ['certifications', '04'], ['github', '05'], ['about', '06'], ['contact', '07']];
   const linkRefs = React.useRef({});
   const [indicator, setIndicator] = React.useState({ left: 0, width: 0, opacity: 0 });
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useLayoutEffect(() => {
     const place = () => {
       const el = linkRefs.current[active];
@@ -13,6 +14,7 @@ function Nav({ theme, setTheme, active, onNav }) {
     window.addEventListener('resize', place);
     return () => window.removeEventListener('resize', place);
   }, [active]);
+  const go = (id) => { onNav(id); setMobileOpen(false); };
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 20, background: 'var(--bg)',
@@ -26,19 +28,23 @@ function Nav({ theme, setTheme, active, onNav }) {
         @media (prefers-reduced-motion:reduce){.nav-indicator{transition:opacity var(--dur-2) var(--ease-out)}}
         .nav-link{color:var(--text-muted)}
         .nav-link:hover{color:var(--text)}
+        .nav-toggle{display:none}
+        .nav-mobile-panel{display:none}
         @media (max-width:640px){
           .nav-row{height:64px !important;gap:var(--space-4) !important}
-          .nav-links{gap:var(--space-4) !important}
+          .nav-links{display:none !important}
           .nav-extra{display:none !important}
+          .nav-toggle{display:inline-flex !important}
+          .nav-mobile-panel{display:flex !important}
         }
       `}</style>
       <div className="nav-row" style={{ maxWidth: 'var(--max-w)', margin: '0 auto', height: 76, display: 'flex', alignItems: 'center', gap: 'var(--space-6)' }}>
-        <a href="#top" onClick={(e) => { e.preventDefault(); onNav('top'); }}
+        <a href="#top" onClick={(e) => { e.preventDefault(); go('top'); }}
           style={{ flex: '0 0 auto', fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-tight)', fontSize: 26, textDecoration: 'none' }}>dncnl.dev</a>
         <nav className="nav-links" style={{ display: 'flex', gap: 'var(--space-5)', marginLeft: 'auto', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {links.map(([id, n]) => (
-            <a key={id} ref={(el) => { linkRefs.current[id] = el; }} href={'#' + id} onClick={(e) => { e.preventDefault(); onNav(id); }}
-              className="nav-link"
+            <a key={id} ref={(el) => { linkRefs.current[id] = el; }} href={'#' + id} onClick={(e) => { e.preventDefault(); go(id); }}
+              className="nav-link" aria-current={active === id ? 'location' : undefined}
               style={{
                 flex: '0 0 auto',
                 fontFamily: 'var(--font-ui)', fontSize: 'var(--fs-2xs)', letterSpacing: 'var(--tracking-wide)',
@@ -62,10 +68,38 @@ function Nav({ theme, setTheme, active, onNav }) {
             <IconButton icon="github" label="GitHub" size="sm" onClick={() => window.open('https://github.com/dncnl', '_blank')} />
             <Button size="sm" variant="secondary" as="a" href="assets/Daniel_Canlapan_Resume.pdf" download>CV</Button>
             <Magnetic strength={0.25}>
-              <Button size="sm" onClick={() => onNav('contact')}>Get in touch</Button>
+              <Button size="sm" variant="secondary" onClick={() => go('contact')}>Get in touch</Button>
             </Magnetic>
           </div>
+          <IconButton className="nav-toggle" icon={mobileOpen ? 'x' : 'menu'} label="Menu" size="sm" variant="ghost"
+            aria-expanded={mobileOpen} aria-controls="nav-mobile-panel" onClick={() => setMobileOpen((o) => !o)} />
         </div>
+        {mobileOpen && (
+          <div id="nav-mobile-panel" className="nav-mobile-panel" style={{
+            position: 'absolute', top: '100%', left: 0, right: 0, background: 'var(--bg)',
+            borderBottom: 'var(--border-hair) solid var(--border-hairline)',
+            padding: 'var(--space-4) var(--page-pad-x)', flexDirection: 'column', gap: 'var(--space-4)',
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+              {links.map(([id, n]) => (
+                <a key={id} href={'#' + id} onClick={(e) => { e.preventDefault(); go(id); }}
+                  aria-current={active === id ? 'location' : undefined}
+                  style={{
+                    fontFamily: 'var(--font-ui)', fontSize: 'var(--fs-sm)', letterSpacing: 'var(--tracking-wide)',
+                    textTransform: 'uppercase', textDecoration: 'none', padding: 'var(--space-2) 0',
+                    color: active === id ? 'var(--text)' : 'var(--text-muted)',
+                  }}>
+                  <span style={{ color: 'var(--text-subtle)', marginRight: 8 }}>{n}</span>{id}
+                </a>
+              ))}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--space-3)', paddingTop: 'var(--space-3)', borderTop: 'var(--rule)' }}>
+              <IconButton icon="github" label="GitHub" size="sm" onClick={() => window.open('https://github.com/dncnl', '_blank')} />
+              <Button size="sm" variant="secondary" as="a" href="assets/Daniel_Canlapan_Resume.pdf" download>CV</Button>
+              <Button size="sm" variant="secondary" onClick={() => go('contact')}>Get in touch</Button>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

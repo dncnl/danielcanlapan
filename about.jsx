@@ -20,7 +20,7 @@ function Portrait() {
 
 function About() {
   return (
-    <section id="about" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--surface) 0, var(--bg) var(--space-10))' }}>
+    <section id="about" aria-labelledby="about-heading" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--surface) 0, var(--bg) var(--space-10))' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <Reveal><Eyebrow index="06" rule>about</Eyebrow></Reveal>
         <style>{`
@@ -32,7 +32,7 @@ function About() {
           <div>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-5)' }}>
               <Reveal><Portrait /></Reveal>
-              <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 0 }}>About me</HeaderRise>
+              <HeaderRise id="about-heading" style={{ fontSize: 'var(--fs-3xl)', margin: 0 }}>About me</HeaderRise>
             </div>
             <Reveal delay={110}>
               <p style={{ marginTop: 'var(--space-5)', maxWidth: 'var(--measure)', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)' }}>
@@ -66,7 +66,7 @@ function About() {
                 {['machine learning', 'intelligent systems', 'software engineering', 'data structures & algorithms'].map((t) => <Tag key={t} className="hover-tag">{t}</Tag>)}
               </div>
               <Button variant="secondary" as="a" href="assets/Daniel_Canlapan_Resume.pdf" download>
-                Download CV <Icon name="download" size={15} />
+                CV <Icon name="download" size={15} />
               </Button>
             </Card>
           </Reveal>

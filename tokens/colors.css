@@ -6,8 +6,8 @@
 /* ink tints (mixed toward cream, so neutrals stay warm) */
 --ink-80:#343330;
 --ink-60:#67655d;
---ink-40:#9b988c;
---ink-25:#c2bfb3;
+--ink-40:#716f66; /* darkened from #9b988c: was 2.60:1/2.77:1 on --bg/--surface, fails WCAG AA text (4.5:1) */
+--ink-25:#8b897f; /* darkened from #c2bfb3: was 1.66:1 on --bg, fails WCAG AA non-text (3:1) */
 --ink-12:#dedbcf;
 --ink-06:#eceada;
 /* dark theme — a warm near-black stack, not inverted cream.
@@ -17,15 +17,15 @@
 --night-3:#201f1b;
 --night-4:#2b2a25;
 --night-line:#3c3a34;
---night-line-2:#5a574f;
+--night-line-2:#646158; /* lightened from #5a574f: was 2.69:1 on --night as the default Button/IconButton border, fails WCAG AA non-text (3:1) */
 --bone:#eae6d8;
 --bone-2:#9c988c;
---bone-3:#6e6b62;
+--bone-3:#858277; /* lightened from #6e6b62: was 3.65:1/3.40:1 on --bg/--surface, fails WCAG AA text (4.5:1) */
 /* semantic accents — INTENTIONAL ADDITION, not on the brand sheet.
    Desaturated editorial hues that sit quietly on cream. */
 --moss:#3d5c3a;
 --rust:#8f3a20;
---ochre:#b5872b;
+--ochre:#886520; /* darkened from #b5872b for light theme: was 2.92:1 on --cream, fails WCAG AA text/non-text; dark theme restores the brighter value below */
 --slate:#33505e;
 
 /* ——— semantic aliases (light is the default theme) ——— */
@@ -68,6 +68,7 @@
 --border-soft:var(--night-line);
 --border-hairline:#292824;
 --focus-ring:var(--bone);
+--ochre:#b5872b; /* dark theme keeps the original brighter value — already passes at 5.98:1 on --night */
 --orb:#2f2d27;
 --success:#8fb587;
 --danger:#e0a184;
