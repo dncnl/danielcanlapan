@@ -2,7 +2,7 @@ const { IconButton, Icon } = window.DncnlDevDesignSystem_cd0d7e;
 
 function Footer() {
   return (
-    <footer style={{ padding: 'var(--space-8) var(--page-pad-x) var(--space-7)' }}>
+    <footer style={{ padding: 'var(--space-8) var(--page-pad-x) var(--space-7)', background: 'linear-gradient(to bottom, var(--surface), var(--bg) 96px)' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 'var(--space-5)', alignItems: 'flex-end', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-tight)', fontSize: 'var(--fs-2xl)' }}>dncnl.dev</div>

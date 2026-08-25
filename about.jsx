@@ -20,9 +20,9 @@ function Portrait() {
 
 function About() {
   return (
-    <section id="about" style={{ padding: 'var(--section-y) var(--page-pad-x)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
+    <section id="about" style={{ padding: 'var(--section-y) var(--page-pad-x)' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-        <Reveal><Eyebrow index="05" rule>about</Eyebrow></Reveal>
+        <Reveal><Eyebrow index="06" rule>about</Eyebrow></Reveal>
         <style>{`
           @media (max-width:760px){
             .about-grid{grid-template-columns:1fr !important}
