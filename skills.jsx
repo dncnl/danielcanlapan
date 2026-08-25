@@ -2,7 +2,7 @@ const { Eyebrow, Card, Tag, Reveal, Icon, TechIcon } = window.DncnlDevDesignSyst
 
 function Skills() {
   return (
-    <section id="skills" style={{ padding: 'var(--section-y) 0', background: 'var(--surface)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
+    <section id="skills" style={{ padding: 'var(--section-y) 0', background: 'linear-gradient(to bottom, var(--bg), var(--surface) 96px, var(--surface) calc(100% - 96px), var(--bg))' }}>
       <div style={{ padding: '0 var(--page-pad-x)' }}>
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <Reveal><Eyebrow index="03" rule>what I do</Eyebrow></Reveal>

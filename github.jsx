@@ -108,7 +108,7 @@ function GitHubActivity() {
   const totalLastYear = contributions && (contributions.total?.lastYear ?? contributions.contributions.reduce((sum, d) => sum + d.count, 0));
 
   return (
-    <section id="github" style={{ padding: 'var(--section-y) var(--page-pad-x)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
+    <section id="github" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--bg), var(--surface) 96px, var(--surface) calc(100% - 96px), var(--bg))' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <Reveal><Eyebrow index="05" rule>github</Eyebrow></Reveal>
         <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>GitHub activity</HeaderRise>

@@ -33,7 +33,7 @@ function CopyEmailRow({ email }) {
 
 function Contact() {
   return (
-    <section id="contact" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'var(--surface)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
+    <section id="contact" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--bg), var(--surface) 96px)' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <Reveal><Eyebrow index="07" rule>contact</Eyebrow></Reveal>
         <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Contact</HeaderRise>

@@ -10,7 +10,7 @@ function Work() {
   const slide = slides[index];
 
   return (
-    <section id="work" style={{ padding: 'var(--section-y) var(--page-pad-x)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
+    <section id="work" style={{ padding: 'var(--section-y) var(--page-pad-x)' }}>
       <style>{`
         @keyframes workSlideIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
         .work-slide{animation:workSlideIn var(--dur-3) var(--ease-out)}

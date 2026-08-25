@@ -89,15 +89,19 @@ function SplitReveal({ text, as = 'span', delay = 0, stagger = 36, style, ...res
   );
 }
 
+/** Cubic ease-out response curve — turns raw (linear-in-scroll-pixels) progress into a settle
+ *  that starts quick and eases into place, instead of a robotic 1:1 scroll-to-motion mapping. */
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
 /**
  * Shared scroll-scrub engine: as `ref`'s element rises from `startPct` to `endPct` of the
- * viewport height, live-applies opacity (`opacityFrom` → 1) and a translateY (`rise` → 0px)
- * directly to the DOM node — a continuous function of scroll position (GSAP ScrollTrigger
- * `scrub` concept), not Reveal's fire-once-on-threshold trigger. Latches once fully settled so
- * scrolling back over already-shown content doesn't re-dim it. Returns false (do nothing) under
- * prefers-reduced-motion.
+ * viewport height, live-applies opacity (`opacityFrom` → 1), a translateY (`rise` → 0px), and
+ * optionally a focus-pull blur (`blurFrom` → 0) directly to the DOM node — a continuous function
+ * of scroll position (GSAP ScrollTrigger `scrub` concept) run through an ease-out curve, not
+ * Reveal's fire-once-on-threshold trigger. Latches once fully settled so scrolling back over
+ * already-shown content doesn't re-dim it. Returns false (do nothing) under prefers-reduced-motion.
  */
-function useScrollScrub(ref, { startPct = 1.05, endPct = 0.3, opacityFrom = 0.45, rise = 28 } = {}) {
+function useScrollScrub(ref, { startPct = 1.05, endPct = 0.3, opacityFrom = 0.45, rise = 28, blurFrom = 0 } = {}) {
   const enabled = React.useMemo(() => !prefersReducedMotion(), []);
   React.useEffect(() => {
     const el = ref.current;
@@ -111,10 +115,12 @@ function useScrollScrub(ref, { startPct = 1.05, endPct = 0.3, opacityFrom = 0.45
       const vh = window.innerHeight;
       const start = vh * startPct;
       const end = vh * endPct;
-      const progress = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+      const linear = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+      const progress = easeOutCubic(linear);
       el.style.opacity = (opacityFrom + progress * (1 - opacityFrom)).toFixed(3);
       el.style.transform = `translateY(${((1 - progress) * rise).toFixed(1)}px)`;
-      if (progress >= 1) settled = true;
+      if (blurFrom) el.style.filter = `blur(${((1 - progress) * blurFrom).toFixed(2)}px)`;
+      if (linear >= 1) settled = true;
     };
     const onScroll = () => { if (raf == null) raf = window.requestAnimationFrame(apply); };
     apply();
@@ -152,11 +158,11 @@ function ScrollSection({ children, style, ...rest }) {
  */
 function HeaderRise({ children, as = 'h2', style, ...rest }) {
   const ref = React.useRef(null);
-  const enabled = useScrollScrub(ref, { startPct: 1.08, endPct: 0.55, opacityFrom: 0, rise: 24 });
+  const enabled = useScrollScrub(ref, { startPct: 1.08, endPct: 0.55, opacityFrom: 0, rise: 24, blurFrom: 9 });
   const Tag = as;
   if (!enabled) return <Tag style={style} {...rest}>{children}</Tag>;
   return (
-    <Tag ref={ref} style={{ willChange: 'transform, opacity', ...style }} {...rest}>
+    <Tag ref={ref} style={{ willChange: 'transform, opacity, filter', ...style }} {...rest}>
       {children}
     </Tag>
   );
