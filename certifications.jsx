@@ -5,7 +5,7 @@ function Certifications() {
   if (!slides.length) return null;
 
   return (
-    <section id="certifications" style={{ padding: 'var(--section-y) var(--page-pad-x)', borderBottom: 'var(--border-hair) solid var(--border-hairline)' }}>
+    <section id="certifications" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--surface) 0, var(--bg) var(--space-10))' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
         <Reveal><Eyebrow index="04" rule>certifications</Eyebrow></Reveal>
         <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Certifications</HeaderRise>

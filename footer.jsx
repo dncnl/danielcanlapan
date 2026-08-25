@@ -2,7 +2,7 @@ const { IconButton, Icon, Reveal } = window.DncnlDevDesignSystem_cd0d7e;
 
 function Footer() {
   return (
-    <footer style={{ padding: 'var(--space-8) var(--page-pad-x) var(--space-7)' }}>
+    <footer style={{ padding: 'var(--space-8) var(--page-pad-x) var(--space-7)', background: 'linear-gradient(to bottom, var(--surface) 0, var(--bg) var(--space-10))' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 'var(--space-5)', alignItems: 'flex-end', justifyContent: 'space-between' }}>
         <Reveal>
           <div>
