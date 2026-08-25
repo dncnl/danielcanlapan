@@ -8,17 +8,19 @@
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="_ds_bundle.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="motion.jsx"></script>
-<script type="text/babel" src="nav.jsx"></script>
-<script type="text/babel" src="hero.jsx"></script>
-<script type="text/babel" src="work.jsx"></script>
-<script type="text/babel" src="skills.jsx"></script>
-<script type="text/babel" src="certifications.jsx"></script>
-<script type="text/babel" src="about.jsx"></script>
-<script type="text/babel" src="contact.jsx"></script>
-<script type="text/babel" src="footer.jsx"></script>
+<!-- ?v= cache-busts these local files — bump it whenever any of them changes, or a
+     browser can keep serving a stale copy after an edit (bit us during animation work). -->
+<script src="_ds_bundle.js?v=20260825"></script>
+<script src="data.js?v=20260825"></script>
+<script type="text/babel" src="motion.jsx?v=20260825"></script>
+<script type="text/babel" src="nav.jsx?v=20260825"></script>
+<script type="text/babel" src="hero.jsx?v=20260825"></script>
+<script type="text/babel" src="work.jsx?v=20260825"></script>
+<script type="text/babel" src="skills.jsx?v=20260825"></script>
+<script type="text/babel" src="certifications.jsx?v=20260825"></script>
+<script type="text/babel" src="about.jsx?v=20260825"></script>
+<script type="text/babel" src="contact.jsx?v=20260825"></script>
+<script type="text/babel" src="footer.jsx?v=20260825"></script>
 <script type="text/babel">
 const SECTIONS = ['top', 'work', 'skills', 'certifications', 'about', 'contact'];
 
@@ -38,7 +40,9 @@ function Site() {
     localStorage.setItem('dncnl-theme', theme);
   }, [theme]);
   React.useEffect(() => {
-    const onScroll = () => {
+    let raf = null;
+    const update = () => {
+      raf = null;
       const y = window.scrollY + 120;
       let current = 'top';
       for (const id of SECTIONS) {
@@ -47,9 +51,13 @@ function Site() {
       }
       setActive(current);
     };
-    onScroll();
+    const onScroll = () => { if (raf == null) raf = window.requestAnimationFrame(update); };
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf != null) window.cancelAnimationFrame(raf);
+    };
   }, []);
   const onNav = (id) => {
     const el = document.getElementById(id);

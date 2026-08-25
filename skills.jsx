@@ -7,6 +7,11 @@ function Skills() {
         <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
           <Reveal><Eyebrow index="03" rule>what I do</Eyebrow></Reveal>
           <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Skills</HeaderRise>
+          <style>{`
+            @keyframes iconGlow{0%,100%{opacity:1}50%{opacity:.5}}
+            .icon-glow{animation:iconGlow 3.6s ease-in-out infinite}
+            @media (prefers-reduced-motion:reduce){.icon-glow{animation:none}}
+          `}</style>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -16,7 +21,7 @@ function Skills() {
               <Reveal key={c.key} delay={40 * i}>
                 <Card className="hover-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', padding: 'var(--space-4)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                    <Icon name={c.icon} size={15} className="hover-accent" style={{ transition: 'var(--transition-ui)' }} />
+                    <Icon name={c.icon} size={15} className="hover-accent icon-glow" style={{ transition: 'var(--transition-ui)', animationDelay: (i * 260) + 'ms' }} />
                     <span style={{ fontFamily: 'var(--font-title)', fontWeight: 700, letterSpacing: 'var(--tracking-slight)', fontSize: 'var(--fs-sm)' }}>{c.key}</span>
                   </div>
                   <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)', fontSize: 'var(--fs-xs)' }}>{c.body}</p>

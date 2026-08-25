@@ -68,8 +68,7 @@ function SplitReveal({ text, as = 'span', delay = 0, stagger = 36, style, ...res
       if (entries[0].isIntersecting) { setShown(true); io.disconnect(); }
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
     io.observe(el);
-    const t = window.setTimeout(() => setShown(true), 1200);
-    return () => { io.disconnect(); window.clearTimeout(t); };
+    return () => { io.disconnect(); };
   }, []);
   const Tag = as;
   const words = text.split(' ');
@@ -96,7 +95,10 @@ function SplitReveal({ text, as = 'span', delay = 0, stagger = 36, style, ...res
  * there's no time dimension to the motion, so a fast scroll just fast-forwards through it in one
  * or two frames. Firing once on intersection and letting a CSS `transition` run its own duration
  * guarantees the arrival is visible at any scroll speed — the same trick `Reveal` already uses.
- * Fail-open on a timeout so content never gets stuck hidden if the observer never fires.
+ * No timeout-based fail-open: with every section mounted up front at page load, a mount-timed
+ * timer fires well before most sections are ever scrolled to, silently pre-revealing them
+ * before the user arrives — the actual bug this file used to have. IntersectionObserver
+ * support is already feature-detected above, so the observer path alone is sufficient.
  */
 function useEnterOnce(ref, { rootMargin = '0px 0px -10% 0px' } = {}) {
   const [shown, setShown] = React.useState(false);
@@ -109,8 +111,7 @@ function useEnterOnce(ref, { rootMargin = '0px 0px -10% 0px' } = {}) {
       if (entries[0].isIntersecting) { setShown(true); io.disconnect(); }
     }, { rootMargin, threshold: 0 });
     io.observe(el);
-    const t = window.setTimeout(() => setShown(true), 1400);
-    return () => { io.disconnect(); window.clearTimeout(t); };
+    return () => { io.disconnect(); };
   }, [enabled]);
   return { shown, enabled };
 }

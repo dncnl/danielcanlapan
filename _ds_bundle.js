@@ -628,11 +628,12 @@ function Reveal({
       threshold: 0
     });
     io.observe(el);
-    // fail-open: never leave content hidden if the observer never fires
-    const t = window.setTimeout(() => setShown(true), 1200);
+    // Local patch (not from the design-system source): the mount-timed fail-open timeout
+    // this used to have raced real scroll speed and fired before most sections ever came
+    // into view, silently pre-revealing them. Removed — port this to
+    // components/core/Reveal.jsx before any future /design-sync pull overwrites it.
     return () => {
       io.disconnect();
-      window.clearTimeout(t);
     };
   }, []);
   const Tag = as;
