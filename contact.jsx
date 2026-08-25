@@ -35,7 +35,7 @@ function Contact() {
   return (
     <section id="contact" style={{ padding: 'var(--section-y) var(--page-pad-x)', background: 'linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--space-10))' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <Reveal><Eyebrow index="06" rule>contact</Eyebrow></Reveal>
+        <Reveal><Eyebrow index="07" rule>contact</Eyebrow></Reveal>
         <HeaderRise style={{ fontSize: 'var(--fs-3xl)', margin: 'var(--space-5) 0 0' }}>Contact</HeaderRise>
         <Reveal delay={100}>
           <p style={{ marginTop: 'var(--space-5)', maxWidth: '52ch', color: 'var(--text-muted)', lineHeight: 'var(--lh-body)', letterSpacing: 'var(--tracking-none)' }}>

@@ -1,7 +1,7 @@
 const { Button, ThemeToggle, IconButton } = window.DncnlDevDesignSystem_cd0d7e;
 
 function Nav({ theme, setTheme, active, onNav }) {
-  const links = [['work', '02'], ['skills', '03'], ['certifications', '04'], ['about', '05'], ['contact', '06']];
+  const links = [['work', '02'], ['skills', '03'], ['certifications', '04'], ['github', '05'], ['about', '06'], ['contact', '07']];
   const linkRefs = React.useRef({});
   const [indicator, setIndicator] = React.useState({ left: 0, width: 0, opacity: 0 });
   React.useLayoutEffect(() => {
