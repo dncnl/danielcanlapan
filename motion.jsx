@@ -89,80 +89,70 @@ function SplitReveal({ text, as = 'span', delay = 0, stagger = 36, style, ...res
   );
 }
 
-/** Cubic ease-out response curve — turns raw (linear-in-scroll-pixels) progress into a settle
- *  that starts quick and eases into place, instead of a robotic 1:1 scroll-to-motion mapping. */
-function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
 /**
- * Shared scroll-scrub engine: as `ref`'s element rises from `startPct` to `endPct` of the
- * viewport height, live-applies opacity (`opacityFrom` → 1), a translateY (`rise` → 0px), and
- * optionally a focus-pull blur (`blurFrom` → 0) directly to the DOM node — a continuous function
- * of scroll position (GSAP ScrollTrigger `scrub` concept) run through an ease-out curve, not
- * Reveal's fire-once-on-threshold trigger. Latches once fully settled so scrolling back over
- * already-shown content doesn't re-dim it. Returns false (do nothing) under prefers-reduced-motion.
+ * Fires once, on a real clock — not pinned to scroll position. A scroll-scrubbed value (state
+ * computed as a direct function of scrollY, re-applied every rAF tick) looks fine on a slow,
+ * deliberate scroll but is indistinguishable from a hard cut on a normal wheel/trackpad flick:
+ * there's no time dimension to the motion, so a fast scroll just fast-forwards through it in one
+ * or two frames. Firing once on intersection and letting a CSS `transition` run its own duration
+ * guarantees the arrival is visible at any scroll speed — the same trick `Reveal` already uses.
+ * Fail-open on a timeout so content never gets stuck hidden if the observer never fires.
  */
-function useScrollScrub(ref, { startPct = 1.05, endPct = 0.3, opacityFrom = 0.45, rise = 28, blurFrom = 0 } = {}) {
+function useEnterOnce(ref, { rootMargin = '0px 0px -10% 0px' } = {}) {
+  const [shown, setShown] = React.useState(false);
   const enabled = React.useMemo(() => !prefersReducedMotion(), []);
   React.useEffect(() => {
     const el = ref.current;
-    if (!enabled || !el) return;
-    let raf = null;
-    let settled = false;
-    const apply = () => {
-      raf = null;
-      if (settled) return;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const start = vh * startPct;
-      const end = vh * endPct;
-      const linear = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
-      const progress = easeOutCubic(linear);
-      el.style.opacity = (opacityFrom + progress * (1 - opacityFrom)).toFixed(3);
-      el.style.transform = `translateY(${((1 - progress) * rise).toFixed(1)}px)`;
-      if (blurFrom) el.style.filter = `blur(${((1 - progress) * blurFrom).toFixed(2)}px)`;
-      if (linear >= 1) settled = true;
-    };
-    const onScroll = () => { if (raf == null) raf = window.requestAnimationFrame(apply); };
-    apply();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (raf != null) window.cancelAnimationFrame(raf);
-    };
+    if (!enabled || !el || !('IntersectionObserver' in window)) { setShown(true); return; }
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.92) { setShown(true); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { setShown(true); io.disconnect(); }
+    }, { rootMargin, threshold: 0 });
+    io.observe(el);
+    const t = window.setTimeout(() => setShown(true), 1400);
+    return () => { io.disconnect(); window.clearTimeout(t); };
   }, [enabled]);
-  return enabled;
+  return { shown, enabled };
 }
 
-/** Wraps a whole section so it eases into place (fade + rise) as it's scrolled up into view. */
+/** Wraps a whole section so it eases into place (fade + rise + a touch of scale) the moment it
+ *  crosses into view — a fixed-duration settle, so it reads at any scroll speed. */
 function ScrollSection({ children, style, ...rest }) {
   const ref = React.useRef(null);
-  const enabled = useScrollScrub(ref, { startPct: 1.05, endPct: 0.3, opacityFrom: 0.45, rise: 28 });
+  const { shown, enabled } = useEnterOnce(ref, { rootMargin: '0px 0px -14% 0px' });
   if (!enabled) return children;
   return (
-    <div ref={ref} style={{ willChange: 'transform, opacity', ...style }} {...rest}>
+    <div ref={ref} style={{
+      opacity: shown ? 1 : 0,
+      transform: shown ? 'none' : 'translateY(40px) scale(0.975)',
+      transition: `opacity var(--dur-4) var(--ease-mech), transform var(--dur-4) var(--ease-mech)`,
+      willChange: 'transform, opacity',
+      ...style,
+    }} {...rest}>
       {children}
     </div>
   );
 }
 
 /**
- * A section headline that rises into place on its own scroll-scrub — meant to read as the one
- * clear "this section just arrived" moment, distinct from ScrollSection's subtler whole-block
- * ease (which stays, as ambient backdrop motion). Full opacity range (not ScrollSection's
- * dimmed floor). Starts just below the viewport (startPct > 1) so it's already animating the
- * instant it crosses the fold, and doesn't resolve until past the middle of the screen — the
- * zone has to span a real chunk of scroll distance or it finishes before anyone notices it
- * started (the bug behind "why are the headers still static").
+ * A section headline that pulls into focus the instant it arrives — meant to read as the one
+ * clear "this section just started" beat, layered a step behind ScrollSection's whole-block ease
+ * (a short built-in delay) so the block settles first and the headline sharpens into it after.
  */
 function HeaderRise({ children, as = 'h2', style, ...rest }) {
   const ref = React.useRef(null);
-  const enabled = useScrollScrub(ref, { startPct: 1.08, endPct: 0.55, opacityFrom: 0, rise: 24, blurFrom: 9 });
+  const { shown, enabled } = useEnterOnce(ref, { rootMargin: '0px 0px -10% 0px' });
   const Tag = as;
   if (!enabled) return <Tag style={style} {...rest}>{children}</Tag>;
   return (
-    <Tag ref={ref} style={{ willChange: 'transform, opacity, filter', ...style }} {...rest}>
+    <Tag ref={ref} style={{
+      opacity: shown ? 1 : 0,
+      transform: shown ? 'none' : 'translateY(26px)',
+      filter: shown ? 'blur(0px)' : 'blur(10px)',
+      transition: `opacity var(--dur-4) var(--ease-mech) 90ms, transform var(--dur-4) var(--ease-mech) 90ms, filter var(--dur-4) var(--ease-mech) 90ms`,
+      willChange: 'transform, opacity, filter',
+      ...style,
+    }} {...rest}>
       {children}
     </Tag>
   );
