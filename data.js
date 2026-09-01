@@ -38,6 +38,17 @@ const PROJECTS = [
       label: 'Presidential Hackathon — International Track',
       href: 'https://presidential-hackathon.taiwan.gov.tw/en/international-track/',
     } },
+  { client: 'Enactus Philippines National Competition 2026 · Early-Stage Project Track', year: '2026',
+    title: 'Kain: a budget-to-meal-plan PWA for food-insecure Filipino families',
+    metric: 'Frontend & backend contributor',
+    summary: 'Enter a food budget and household size; Kain runs every combination of local recipes through a bounded-knapsack solver to return the single most nutritious plan that fits — with an exact shopping list and a chart of daily nutrition coverage. Fully client-side and offline-capable: no server, no network needed after first load.',
+    tags: ['javascript', 'pwa', 'tailwind css', 'chart.js'], href: 'https://kain-enactus.vercel.app',
+    image: 'assets/projects/kain/kain-cover.png',
+    submission: {
+      note: 'Built for the Enactus Philippines National Competition 2026 — Early-Stage Project Track · code on',
+      label: 'GitHub',
+      href: 'https://github.com/dncnl/kain-enactus-2026',
+    } },
 ];
 const CERTIFICATIONS = [
   { title: 'Introduction to Data Science', issuer: 'Cisco',
