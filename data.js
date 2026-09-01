@@ -27,7 +27,7 @@ const COMPETENCIES = [
     tags: ['architecture docs', 'literature review'] },
 ];
 const PROJECTS = [
-  { client: 'Presidential Hackathon · International Track', year: '2025',
+  { client: 'Presidential Hackathon · International Track', year: '2026',
     title: 'Kalinga: an AI care companion for migrant caregivers',
     metric: 'Frontend developer & planning contributor',
     summary: 'Scoped the problem and MVP, then designed and built the multi-screen Flutter app: onboarding, patient profiles, daily check-ins, medication tracking and emergency help, multilingual and offline-first.',
