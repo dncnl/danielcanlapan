@@ -45,7 +45,7 @@ function Contact() {
             Internships, project work, collaborations, or just a question about something I've built. I usually reply within a couple of days.
           </p>
         </Reveal>
-        <Reveal delay={140}>
+        <Reveal delay={140} style={{ width: '100%', maxWidth: 480 }}>
           <div style={{ marginTop: 'var(--space-7)', maxWidth: 480, width: '100%' }}>
             <CopyEmailRow email="danielcanlapan0402@gmail.com" />
           </div>
