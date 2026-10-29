@@ -27,17 +27,6 @@ const COMPETENCIES = [
     tags: ['architecture docs', 'literature review'] },
 ];
 const PROJECTS = [
-  { client: 'Work sample · IT internship application to The Back Room Offshoring Inc.', year: '2026',
-    title: 'Help Desk Lite: logging and prioritizing IT support tickets',
-    metric: 'Solo developer · planning, build, testing & documentation',
-    summary: 'Staff pick a category and get three fixes to try first; anything still broken becomes a ticket, prioritized P1 to P4 from impact × urgency and moved across an Open / In progress / Resolved board. Plain HTML, CSS and vanilla JavaScript modules with no framework or build step: accessible, responsive, saved in localStorage, and documented with a plain-language user guide and a technical reference.',
-    tags: ['javascript', 'html', 'css', 'accessibility'], href: 'https://help-desk-lite-six.vercel.app',
-    image: 'assets/projects/help-desk-lite/help-desk-lite-cover.png',
-    submission: {
-      note: 'An unofficial design study inspired by The Back Room Offshoring Inc.\'s visual identity; not affiliated with or endorsed by them · code on',
-      label: 'GitHub',
-      href: 'https://github.com/dncnl/help-desk-lite',
-    } },
   { client: 'Presidential Hackathon · International Track', year: '2026',
     title: 'Kalinga: an AI care companion for migrant caregivers',
     metric: 'Frontend developer & planning contributor',
