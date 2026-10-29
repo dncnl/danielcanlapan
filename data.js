@@ -27,28 +27,6 @@ const COMPETENCIES = [
     tags: ['architecture docs', 'literature review'] },
 ];
 const PROJECTS = [
-  { client: 'Personal project · interactive portfolio', year: '2026',
-    title: 'Handoff: a 3D, hand-led portfolio experience',
-    metric: 'Solo developer · design, 3D, motion & build',
-    summary: 'A rigged 3D hand reaches out; hold to shake it and fragments assemble into a screen that carries the portfolio across five sections, the hand changing pose for each. Three.js with custom shaders and lazy-loaded bloom, GSAP timelines, and a quality tier that drops effects when frame rate falls. Strict TypeScript on Vite, with touch, keyboard and reduced-motion paths.',
-    tags: ['typescript', 'three.js', 'gsap', 'webgl'], href: 'https://handoff-kappa-one.vercel.app',
-    image: 'assets/projects/handoff/handoff-cover.jpg',
-    submission: {
-      note: 'A personal experiment in interactive 3D on the web · code on',
-      label: 'GitHub',
-      href: 'https://github.com/dncnl/handoff',
-    } },
-  { client: 'Work sample · IT internship application to The Back Room Offshoring Inc.', year: '2026',
-    title: 'Help Desk Lite: logging and prioritizing IT support tickets',
-    metric: 'Solo developer · planning, build, testing & documentation',
-    summary: 'Staff pick a category and get three fixes to try first; anything still broken becomes a ticket, prioritized P1 to P4 from impact × urgency and moved across an Open / In progress / Resolved board. Plain HTML, CSS and vanilla JavaScript modules with no framework or build step: accessible, responsive, saved in localStorage, and documented with a plain-language user guide and a technical reference.',
-    tags: ['javascript', 'html', 'css', 'accessibility'], href: 'https://help-desk-lite-six.vercel.app',
-    image: 'assets/projects/help-desk-lite/help-desk-lite-cover.png',
-    submission: {
-      note: 'An unofficial design study inspired by The Back Room Offshoring Inc.\'s visual identity; not affiliated with or endorsed by them · code on',
-      label: 'GitHub',
-      href: 'https://github.com/dncnl/help-desk-lite',
-    } },
   { client: 'Presidential Hackathon · International Track', year: '2026',
     title: 'Kalinga: an AI care companion for migrant caregivers',
     metric: 'Frontend developer & planning contributor',
