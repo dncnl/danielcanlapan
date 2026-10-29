@@ -27,6 +27,17 @@ const COMPETENCIES = [
     tags: ['architecture docs', 'literature review'] },
 ];
 const PROJECTS = [
+  { client: 'Personal project · interactive portfolio', year: '2026',
+    title: 'Handoff: a 3D, hand-led portfolio experience',
+    metric: 'Solo developer · design, 3D, motion & build',
+    summary: 'A rigged 3D hand reaches out; hold to shake it and fragments assemble into a screen that carries the portfolio across five sections, the hand changing pose for each. Three.js with custom shaders and lazy-loaded bloom, GSAP timelines, and a quality tier that drops effects when frame rate falls. Strict TypeScript on Vite, with touch, keyboard and reduced-motion paths.',
+    tags: ['typescript', 'three.js', 'gsap', 'webgl'], href: 'https://handoff-kappa-one.vercel.app',
+    image: 'assets/projects/handoff/handoff-cover.jpg',
+    submission: {
+      note: 'A personal experiment in interactive 3D on the web · code on',
+      label: 'GitHub',
+      href: 'https://github.com/dncnl/handoff',
+    } },
   { client: 'Work sample · IT internship application to The Back Room Offshoring Inc.', year: '2026',
     title: 'Help Desk Lite: logging and prioritizing IT support tickets',
     metric: 'Solo developer · planning, build, testing & documentation',
